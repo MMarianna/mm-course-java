@@ -2,20 +2,19 @@ package com.example.tests;
 
 import org.testng.annotations.Test;
 
-public class GroupCreationTests extends TestBase {
+public class GroupModificationTests extends TestBase {
 
 	@Test
-	public void testNonEmptyGroupCreation() throws Exception {
+	public void modifySomeGroup() {
 		app.getNavigationHelper().openMainPage();
 		app.getNavigationHelper().gotoGroupsPage();
-		app.getGroupHelper().initGroupCreation();
+		app.getGroupHelper().initGroupModification(1);
 		GroupData group = new GroupData();
-		group.name = "name 1";
-		group.header = "header 1";
-		group.footer = "footer 1";
+		group.name = "new name";
 		app.getGroupHelper().fillGroupForm(group);
-		app.getNavigationHelper().submitCreation(app);
+		app.getGroupHelper().submitGroupModification();
 		app.getGroupHelper().returnToGroupsPage();
+
 	}
 
 }
