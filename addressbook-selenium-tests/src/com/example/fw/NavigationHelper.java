@@ -20,4 +20,8 @@ public class NavigationHelper extends HelperBase {
 		click(By.name("submit"));
 	}
 
+	public void submitModification(ApplicationManager applicationManager) {
+		click(By.name("update"));
+	}
+
 }

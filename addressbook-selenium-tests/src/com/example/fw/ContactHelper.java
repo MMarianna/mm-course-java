@@ -35,4 +35,12 @@ public class ContactHelper extends HelperBase {
 		click(By.linkText("home page"));
 	}
 
+	public void gotoContactPage(int index) {
+		click(By.xpath("//tr[" + index + "]/td[7]/a"));
+	}
+
+	public void deleteContact() {
+		click(By.xpath("//input[@value='Delete']"));
+	}
+
 }
