@@ -16,12 +16,4 @@ public class NavigationHelper extends HelperBase {
 		click(By.linkText("groups"));
 	}
 
-	public void submitCreation(ApplicationManager applicationManager) {
-		click(By.name("submit"));
-	}
-
-	public void submitModification(ApplicationManager applicationManager) {
-		click(By.name("update"));
-	}
-
 }
