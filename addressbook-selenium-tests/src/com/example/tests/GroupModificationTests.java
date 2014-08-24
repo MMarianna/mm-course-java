@@ -19,7 +19,12 @@ public class GroupModificationTests extends TestBase {
 		List<GroupData> oldList = app.getGroupHelper().getGroups();
 
 		Random rnd = new Random();
-		int index = rnd.nextInt(oldList.size() - 1);
+		int index;
+		if (oldList.size() == 1) {
+			index = 0;
+		} else {
+			index = rnd.nextInt(oldList.size() - 1);
+		}
 
 		// actions
 		app.getGroupHelper().initGroupModification(index);
@@ -35,6 +40,7 @@ public class GroupModificationTests extends TestBase {
 		oldList.add(group);
 		// sort oldList
 		Collections.sort(oldList);
+		Collections.sort(newList);
 		assertEquals(newList, oldList);
 	}
 

@@ -31,23 +31,54 @@ public class TestBase {
 		// fill list
 		for (int i = 0; i < 5; i++) {
 			GroupData group = new GroupData();
-			group.name = generateRandomString();
-			group.header = generateRandomString();
-			;
-			group.footer = generateRandomString();
-			;
+			group.name = generateRandomGroupString();
+			group.header = generateRandomGroupString();
+			group.footer = generateRandomGroupString();
 			list.add(new Object[] { group });
 		}
 		return list.iterator();
 	}
 
-	public String generateRandomString() {
+	@DataProvider
+	public Iterator<Object[]> randomValidContactGenerator() {
+		List<Object[]> list = new ArrayList<Object[]>();
+		// fill list
+		for (int i = 0; i < 5; i++) {
+			ContactData contact = new ContactData();
+			contact.firstName = generateRandomContactString();
+			contact.lastName = generateRandomContactString();
+			contact.address = generateRandomContactString();
+			contact.address2 = generateRandomContactString();
+			contact.homePhone = generateRandomContactString();
+			contact.phone2 = generateRandomContactString();
+			contact.mobilePhone = generateRandomContactString();
+			contact.workPhone = generateRandomContactString();
+			contact.email = generateRandomContactString();
+			contact.email2 = generateRandomContactString();
+			contact.birthDay = "15";
+			contact.birthMonth = "July";
+			contact.birthYear = "1980";
+			contact.groupName = "[none]";
+			list.add(new Object[] { contact });
+		}
+		return list.iterator();
+	}
+
+	public String generateRandomString(int freq) {
 		Random rnd = new Random();
-		if (rnd.nextInt(3) == 0) {
+		if (rnd.nextInt(freq) == 0) {
 			return "";
 		} else {
 			return "test" + rnd.nextInt();
 		}
+	}
+
+	public String generateRandomContactString() {
+		return generateRandomString(10);
+	}
+
+	public String generateRandomGroupString() {
+		return generateRandomString(3);
 	}
 
 }
