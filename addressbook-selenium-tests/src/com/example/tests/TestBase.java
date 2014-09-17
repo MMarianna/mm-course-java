@@ -30,10 +30,10 @@ public class TestBase {
 		List<Object[]> list = new ArrayList<Object[]>();
 		// fill list
 		for (int i = 0; i < 5; i++) {
-			GroupData group = new GroupData();
-			group.name = generateRandomGroupString();
-			group.header = generateRandomGroupString();
-			group.footer = generateRandomGroupString();
+			GroupData group = new GroupData()
+					.withName(generateRandomGroupString())
+					.withHeader(generateRandomGroupString())
+					.withFooter(generateRandomGroupString());
 			list.add(new Object[] { group });
 		}
 		return list.iterator();
@@ -44,21 +44,19 @@ public class TestBase {
 		List<Object[]> list = new ArrayList<Object[]>();
 		// fill list
 		for (int i = 0; i < 5; i++) {
-			ContactData contact = new ContactData();
-			contact.firstName = generateRandomContactString();
-			contact.lastName = generateRandomContactString();
-			contact.address = generateRandomContactString();
-			contact.address2 = generateRandomContactString();
-			contact.homePhone = generateRandomContactString();
-			contact.phone2 = generateRandomContactString();
-			contact.mobilePhone = generateRandomContactString();
-			contact.workPhone = generateRandomContactString();
-			contact.email = generateRandomContactString();
-			contact.email2 = generateRandomContactString();
-			contact.birthDay = "15";
-			contact.birthMonth = "July";
-			contact.birthYear = "1980";
-			contact.groupName = "[none]";
+			ContactData contact = new ContactData()
+					.withFirstName(generateRandomContactString())
+					.withLastName(generateRandomContactString())
+					.withAddress(generateRandomContactString())
+					.withAddress2(generateRandomContactString())
+					.withHomePhone(generateRandomContactString())
+					.withPhone2(generateRandomContactString())
+					.withMobilePhone(generateRandomContactString())
+					.withWorkPhone(generateRandomContactString())
+					.withEmail(generateRandomContactString())
+					.withEmail2(generateRandomContactString())
+					.withBirthDay("15").withBirthMonth("July")
+					.withBirthYear("1980").withGroupName("[none]");
 			list.add(new Object[] { contact });
 		}
 		return list.iterator();
