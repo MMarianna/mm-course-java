@@ -1,12 +1,12 @@
 package com.example.fw;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.example.tests.ContactData;
+import com.example.utils.SortedListOf;
 
 public class ContactHelper extends HelperBase {
 
@@ -17,11 +17,11 @@ public class ContactHelper extends HelperBase {
 		super(manager);
 	}
 
-	private List<ContactData> cachedContacts;
+	private SortedListOf<ContactData> cachedContacts;
 
 	// -------Higher level methods---------//
 
-	public List<ContactData> getContacts() {
+	public SortedListOf<ContactData> getContacts() {
 
 		if (cachedContacts == null) {
 			rebuildCache();
@@ -31,9 +31,9 @@ public class ContactHelper extends HelperBase {
 	}
 
 	private void rebuildCache() {
-		cachedContacts = new ArrayList<ContactData>();
+		cachedContacts = new SortedListOf<ContactData>();
 		List<WebElement> rows = driver.findElements(By
-				.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
+				.xpath("//tr[@name='entry']"));
 		// fills contacts list
 		for (WebElement row : rows) {
 			String firstName = row.findElement(By.xpath(".//td[3]")).getText();
@@ -92,11 +92,6 @@ public class ContactHelper extends HelperBase {
 		type(By.name("byear"), contact.getBirthYear());
 		if (formType == CREATION) {
 			selectByText(By.name("new_group"), contact.getGroupName());
-		} else {
-			if (driver.findElements(By.name("new_group")).size() != 0) {
-				throw new Error(
-						"Group selector exists in contact modification form");
-			}
 		}
 		type(By.name("address2"), contact.getAddress2());
 		type(By.name("phone2"), contact.getPhone2());
@@ -105,13 +100,11 @@ public class ContactHelper extends HelperBase {
 
 	public ContactHelper submitContactCreation() {
 		click(By.name("submit"));
-		cachedContacts = null;
 		return this;
 	}
 
 	public ContactHelper submitContactModification() {
 		click(By.name("update"));
-		cachedContacts = null;
 		return this;
 	}
 
